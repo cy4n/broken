@@ -49,6 +49,24 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>4.0.2</version>
+				<configuration>
+					<autoUpdate>false</autoUpdate>
+					<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+					<format>xml</format>
+					<suppressionFile>cve-suppressions.xml</suppressionFile>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
