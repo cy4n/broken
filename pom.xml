@@ -60,6 +60,7 @@
 				<artifactId>dependency-check-maven</artifactId>
 				<version>4.0.2</version>
 				<configuration>
+					<failOnError>false</failOnError>
 					<cveUrl12Modified>http://10.0.11.1:9000/NVD/nvdcve-modified.xml.gz</cveUrl12Modified>
 					<cveUrl20Modified>http://10.0.11.1:9000/NVD/nvdcve-2.0-modified.xml.gz</cveUrl20Modified>
 					<cveUrl12Base>http://10.0.11.1:9000/NVD/nvdcve-%d.xml</cveUrl12Base>
