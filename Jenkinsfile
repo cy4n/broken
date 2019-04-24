@@ -65,6 +65,7 @@ pipeline {
         stage('api security scan') {
             steps {
                 sh "docker run -d -p10000:8080 --name 'sut' cy4n/broken:${env.GIT_COMMIT}"
+                sleep 20
                 script {
                     try {
                         sh "docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://sut:10000"
