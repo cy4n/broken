@@ -79,6 +79,7 @@ pipeline {
         stage('docker cleanup') {
             steps {
                 sh 'docker stop sut'
+                sh 'docker container rm sut'
             }
         }
     }
