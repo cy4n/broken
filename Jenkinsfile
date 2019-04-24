@@ -32,5 +32,10 @@ pipeline {
                 sh './mvnw -DskipTests package'
             }
         }
+        stage('docker build') {
+            steps {
+                sh "docker build . -t cy4n/broken:${env.GIT_COMMIT}"
+            }
+        }
     }
 }
