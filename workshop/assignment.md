@@ -49,6 +49,8 @@ run the vulnerable app via docker run or maven/java
 docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:8080
 ```
 
+* scan your own (company) website :-)
+
 
 
 
