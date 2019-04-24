@@ -68,7 +68,7 @@ pipeline {
                 sleep 20
                 script {
                     try {
-                        sh "docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://sut:10000"
+                        sh "docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://10.0.11.1:10000"
                     }
                     catch (exc) {
                         currentBuild.result = 'UNSTABLE'
