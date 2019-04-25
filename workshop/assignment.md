@@ -24,7 +24,7 @@ download clair-scanner for your OS: https://github.com/arminc/clair-scanner/rele
 ### setup clair and its database:
 ```bash
 docker run -p 5432:5432 -d --name db arminc/clair-db
-docker run -p 6060 --link db:postgres -d --name clair arminc/clair-local-scan
+docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-scan
 ```
 
 run the actual scan
