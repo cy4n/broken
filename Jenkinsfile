@@ -4,6 +4,9 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '30', artifactNumToKeepStr: '30'))
     }
     agent any
+    environment {
+        CURRENT_IP = InetAddress.localHost.hostAddress
+    }
     stages {
         stage('Show runtime version') {
             steps {
@@ -52,7 +55,7 @@ pipeline {
                 script {
                     try {
                         echo "needs jenkins port 9279 exposed :-(, which is not happening in the demo dockerized jenkins, sorry"
-                        echo "claire-scanner -c http://10.0.11.1:6060 --ip 10.0.11.1 -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:${env.GIT_COMMIT}"
+                        echo "claire-scanner -c http://${CURRENT_IP}:6060 --ip ${CURRENT_IP} -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:${env.GIT_COMMIT}"
                         sh 'exit 1'
                     }
                     catch (exc) {
@@ -67,7 +70,7 @@ pipeline {
                 sleep 20
                 script {
                     try {
-                        sh "docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://10.0.11.1:10000"
+                        sh "docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://${CURRENT_IP}:10000"
                     }
                     catch (exc) {
                         currentBuild.result = 'UNSTABLE'
