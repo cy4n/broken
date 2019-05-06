@@ -5,7 +5,7 @@ pipeline {
     }
     agent any
     environment {
-        CURRENT_IP = InetAddress.localHost.hostAddress
+        CURRENT_IP = 'docker.for.mac.localhost'
     }
     stages {
         stage('Show runtime version') {
