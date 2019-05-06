@@ -54,8 +54,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        echo "needs jenkins port 9279 exposed :-(, which is not happening in the demo dockerized jenkins, sorry"
-                        echo "claire-scanner -c http://${CURRENT_IP}:6060 --ip ${CURRENT_IP} -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:${env.GIT_COMMIT}"
+                        sh "claire-scanner -c http://${CURRENT_IP}:6060 --ip ${CURRENT_IP} -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:${env.GIT_COMMIT}"
                         sh 'exit 1'
                     }
                     catch (exc) {
