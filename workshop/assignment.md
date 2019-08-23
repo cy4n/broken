@@ -54,3 +54,8 @@ docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://$(ipconfig getif
 ```
 
 * scan your own (company) website :-)
+
+
+## Further source
+
+* https://github.com/jeremylong/DependencyCheck/
