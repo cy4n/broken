@@ -53,9 +53,9 @@ pipeline {
         stage('container security scan') {
             steps {
                 script {
+                    // you can start clair and clair-DB containers here if you only want to start them on demand
                     try {
-                        sh "claire-scanner -c http://${CURRENT_IP}:6060 --ip ${CURRENT_IP} -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:${env.GIT_COMMIT}"
-                        sh 'exit 1'
+                        sh "clair-scanner -c http://${CURRENT_IP}:6060 --ip ${CURRENT_IP} -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:${env.GIT_COMMIT}"
                     }
                     catch (exc) {
                         currentBuild.result = 'UNSTABLE'
