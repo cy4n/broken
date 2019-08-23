@@ -1,6 +1,5 @@
-# Workshop Stuttgarter Testtage 2019
+# Workshop CCCamp19
 # Security Testing
-
 
 demo project: https://github.com/cy4n/broken with fun dependencies
 
@@ -17,7 +16,7 @@ demo project: https://github.com/cy4n/broken with fun dependencies
 ---
 
 ## clair container scanning
-### get the clair-scanner binary: 
+### get the clair-scanner binary:
 
 download clair-scanner for your OS: https://github.com/arminc/clair-scanner/releases and make it executable
 
@@ -29,7 +28,7 @@ docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-sc
 
 run the actual scan
 ```bash
-./claire-scanner -c http://<YOUR IP>:6060 --ip <YOUR IP> -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:latest
+./clair-scanner_darwin_amd64 -c http://$(ipconfig getifaddr en0):6060 --ip $(ipconfig getifaddr en0) -r clair-report.json -l clair.log -w clair-whitelist.yml cy4n/broken:latest
 ```
 
 * find out about vulnerable packages
@@ -38,7 +37,7 @@ run the actual scan
 
 * try to scan the image "cy4n/broken:alpine", what happens, what are the implications?
 
---- 
+---
 ## WEB API scanning with ZAProxy
 
 run the vulnerable app via docker run or maven/java
@@ -46,14 +45,7 @@ run the vulnerable app via docker run or maven/java
 * scan the app with zaproxy:
 
 ```bash
-docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:8080
+docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://$(ipconfig getifaddr en0):8080
 ```
 
 * scan your own (company) website :-)
-
-
-
-
-
-
-
