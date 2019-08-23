@@ -8,6 +8,11 @@ demo project: https://github.com/cy4n/broken with fun dependencies
 ## dependency-check
 
 * find the vulnerable dependencies
+
+```bash
+./mvnw dependency-check:check
+```
+
 * upgrade the dependency if possible
 * whitelist / suppress the vulnerability
 
