@@ -61,7 +61,6 @@
 				<version>5.2.1</version>
 				<configuration>
 					<failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
-					<autoUpdate>false</autoUpdate>
 					<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
 					<suppressionFile>cve-suppressions.xml</suppressionFile>
 				</configuration>
