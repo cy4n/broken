@@ -6,6 +6,6 @@ do not run in prod :-)
 
 workshop assignments can be found [here](https://github.com/cy4n/broken/blob/master/workshop/assignment.md).
 
-## Requirements
+# slides for the corresponding talk can be found here:
 
-* jdk8
+https://github.com/cy4n/talk-securitytesting
