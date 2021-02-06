@@ -1,24 +1,35 @@
-# Workshop CCCamp19
-# Security Testing
+# Workshop OOP 2021
+# 
 
-demo project: https://github.com/cy4n/broken with fun dependencies
+demo project: https://github.com/cy4n/broken
+
+---
+
+## dependency-check (scan java dependency)  
+
+1. download a local dependency-check vulnerability database 
+2. find the vulnerable dependencies in the current project and check the html report
+3. get rid of struts, you don't need it anyway, check for vulnerabilities after
+4. find the packages that brings snakeyaml as transitive dependency and update it to the next release
+5. find out what's wrong with log4j-api
+6. Spring Security looks scary, score "High 8.8", what is wrong? 
+7. what about snakeyaml? 
+
 
 ---
 
-## dependency-check
+## trivy (container image scanning)
 
-* find the vulnerable dependencies
+1. install trivy https://github.com/aquasecurity/trivy#installation
+2. download a vulnerability database
+3. scan the image cy4n/broken:springboot2.1.8-jre11
+4. whitelist the CVE-2005-2541 in .trivyignore
+5. scan the image cy4n/broken:alpine
+6. scan the image from 3.) but only for HIGH severity
+7. play around with --exit-code on findings
 
-```bash
-./mvnw dependency-check:check
-```
-
-* upgrade the dependency if possible
-* whitelist / suppress the vulnerability
-
-(hint: check the maven goal for dependency-check)
-
----
+<details><summary>Alternative: Quay Clair (formerly CoreOS)</summary>
+<p>
 
 ## clair container scanning
 ### get the clair-scanner binary:
@@ -42,20 +53,26 @@ run the actual scan
 
 * try to scan the image "cy4n/broken:alpine", what happens, what are the implications?
 
+</p>
+</details>
+
 ---
-## WEB API scanning with ZAProxy
+## OWASP ZAP (API scanning) 
 
-run the vulnerable app via docker run or maven/java
-
-* scan the app with zaproxy:
-
+run the zap demo app from https://github.com/cy4n/owaspzapdemo and run it:
 ```bash
-docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://$(ipconfig getifaddr en0):8080
+./mvnw spring-boot:run
 ```
 
-* scan your own (company) website :-)
+1. scan the app with zaproxy:
 
+```bash
+docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-api-scan.py -a -t http://host.docker.internal:8080/v2/api-docs -f openapi
+```
 
-## Further source
+2. generate default configuration
+3. ignore finding for "X-Content-Type-Options Header Missing" and scan again
 
-* https://github.com/jeremylong/DependencyCheck/
+## homework 
+
+- try the tools on your own apps or api (if you dare!?)
