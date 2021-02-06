@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-slim
+FROM adoptopenjdk/openjdk11:alpine-jre
 EXPOSE 8080
 
 RUN mkdir /app
