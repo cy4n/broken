@@ -87,7 +87,7 @@ trivy has good usage documentation in the readme: https://github.com/aquasecurit
    <p>
 
    ```bash
-   ./mvnw dependency-check:update-only
+   trivy --download-db-only
    ```
 
    database file location will differ from operating system. 
